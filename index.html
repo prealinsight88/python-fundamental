@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python Fundamental – Informatika XII</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/1.2.0/skulpt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/1.2.0/skulpt-stdlib.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<style>
+body{font-family:Inter,sans-serif;background:#1e1e1e;color:#d4d4d4}
+.mono,textarea.code,pre{font-family:'Fira Code',monospace}
+.card{background:#252526;border:1px solid #3c3c3c;border-radius:12px;padding:1.25rem}
+.inp{width:100%;background:#1e1e1e;border:1px solid #3c3c3c;border-radius:8px;padding:.6rem .8rem;color:#d4d4d4;outline:none}
+.inp:focus{border-color:#569cd6}
+textarea.code{width:100%;min-height:200px;background:#1e1e1e;color:#9cdcfe;border:1px solid #3c3c3c;border-radius:8px;padding:.8rem;font-size:13px;tab-size:4;outline:none}
+pre.out{background:#0d0d0d;color:#4ec9b0;border-radius:8px;padding:.8rem;min-height:70px;font-size:13px;white-space:pre-wrap}
+.btn{background:#0e639c;color:#fff;padding:.5rem 1rem;border-radius:8px;font-weight:600;transition:.2s}
+.btn:hover{background:#1177bb;transform:translateY(-1px)}
+.btn2{background:#3c3c3c}.btn2:hover{background:#4a4a4a}
+.nav{padding:.5rem .9rem;border-radius:8px;white-space:nowrap;color:#9d9d9d;font-size:14px}
+.nav:hover{background:#2a2d2e;color:#fff}.nav.on{background:#37373d;color:#fff;box-shadow:inset 0 -2px #569cd6}
+.sec{display:none}.sec.on{display:block}
+.kw{color:#c586c0}.st{color:#ce9178}.fn{color:#dcdcaa}.cm{color:#6a9955}
+.lv{border:1px solid #3c3c3c;border-radius:10px;padding:.5rem .9rem;font-weight:600}
+.lv.on{border-color:#569cd6;background:#094771}.lv.done{border-color:#4ec9b0;color:#4ec9b0}.lv.lock{opacity:.4;cursor:not-allowed}
+</style>
+</head>
+<body>
+<header class="sticky top-0 z-40 bg-[#181818]/95 backdrop-blur border-b border-[#3c3c3c]">
+ <div class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-3">
+  <div class="mono text-[#569cd6] font-semibold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-400"></i> py<span class="text-[#4ec9b0]">.fundamental</span></div>
+  <nav id="nav" class="flex gap-1 overflow-x-auto flex-1"></nav>
+  <div class="mono text-xs text-[#ce9178] whitespace-nowrap" title="Waktu berjalan"><i class="fa-regular fa-clock"></i> <span id="tm">00:00</span>/90</div>
+ </div>
+</header>
+
+<main class="max-w-5xl mx-auto p-4 space-y-4">
+
+<!-- BERANDA + TP -->
+<section id="s-home" class="sec on space-y-4">
+ <div class="card">
+  <h1 class="text-2xl font-bold text-white mb-1">Python Fundamental <span class="text-[#4ec9b0]">&lt;/&gt;</span></h1>
+  <p class="text-sm text-[#9d9d9d] mb-4">Informatika Kelas XII · Fase F · 2 JP (90 menit)</p>
+  <div class="grid sm:grid-cols-2 gap-3">
+   <div><label class="text-xs text-[#9d9d9d]">Nama Lengkap *</label><input id="nama" class="inp" placeholder="Nama siswa"></div>
+   <div><label class="text-xs text-[#9d9d9d]">Kelas *</label><input id="kelas" class="inp" placeholder="mis. XII-A"></div>
+  </div>
+ </div>
+ <div class="card">
+  <h2 class="font-bold text-white mb-2"><i class="fa-solid fa-bullseye text-[#569cd6]"></i> Tujuan Pembelajaran (TP)</h2>
+  <p class="text-xs text-[#9d9d9d] mb-2">Berbasis CP Fase F: siswa mampu menerapkan algoritma dan pemrograman untuk menyelesaikan masalah.</p>
+  <ol class="list-decimal ml-5 space-y-1 text-sm">
+   <li>Menggunakan <b>variabel, tipe data, dan operator</b> Python untuk memproses data sederhana.</li>
+   <li>Menerapkan <b>percabangan if-elif-else</b> untuk mengambil keputusan dalam program.</li>
+   <li>Menerapkan <b>perulangan for/while</b> untuk tugas berulang secara efisien.</li>
+   <li>Membuat dan memanggil <b>fungsi sederhana</b> serta menjalankan dan memperbaiki (debug) kode secara mandiri.</li>
+  </ol>
+ </div>
+ <div class="card text-sm">
+  <h2 class="font-bold text-white mb-2"><i class="fa-solid fa-hourglass-half text-[#569cd6]"></i> Alur 90 Menit</h2>
+  <div class="grid sm:grid-cols-3 gap-2 mono text-xs">
+   <div>Beranda &amp; TP · 5'</div><div>Materi · 20'</div><div>Lab · 20'</div><div>Game 5 Level · 25'</div><div>LKPD · 10'</div><div>Refleksi &amp; Finish · 10'</div>
+  </div>
+  <button class="btn mt-4" onclick="go('materi')">Mulai Belajar <i class="fa-solid fa-arrow-right"></i></button>
+ </div>
+</section>
+
+<!-- MATERI -->
+<section id="s-materi" class="sec space-y-3">
+ <div id="materi"></div>
+</section>
+
+<!-- LAB -->
+<section id="s-lab" class="sec space-y-3">
+ <div class="card">
+  <h2 class="font-bold text-white mb-2"><i class="fa-solid fa-flask text-[#569cd6]"></i> LAB Python Interaktif</h2>
+  <p class="text-xs text-[#9d9d9d] mb-2">Ketik kode, tekan <b>Run</b> (atau Ctrl+Enter). Fungsi <code>input()</code> akan memunculkan kotak isian.</p>
+  <div class="flex flex-wrap gap-2 mb-2" id="snip"></div>
+  <textarea id="labCode" class="code" spellcheck="false">nama = input("Siapa namamu? ")
+for i in range(3):
+    print("Halo,", nama, "ke-" + str(i+1))</textarea>
+  <div class="flex gap-2 my-2"><button class="btn" onclick="runLab()"><i class="fa-solid fa-play"></i> Run</button><button class="btn btn2" onclick="$('labOut').textContent=''">Bersihkan</button><span id="labSt" class="mono text-xs self-center text-[#9d9d9d]"></span></div>
+  <pre id="labOut" class="out"></pre>
+ </div>
+</section>
+
+<!-- GAME -->
+<section id="s-game" class="sec space-y-3">
+ <div class="card">
+  <div class="flex justify-between items-center mb-3"><h2 class="font-bold text-white"><i class="fa-solid fa-gamepad text-[#569cd6]"></i> Misi Koding 5 Level</h2><div class="mono text-[#dcdcaa]"><i class="fa-solid fa-star"></i> Skor: <span id="score">0</span>/100</div></div>
+  <div id="lvBar" class="flex flex-wrap gap-2 mb-3"></div>
+  <div id="lvBody"></div>
+ </div>
+</section>
+
+<!-- LKPD -->
+<section id="s-lkpd" class="sec space-y-3">
+ <div class="card space-y-4">
+  <h2 class="font-bold text-white"><i class="fa-solid fa-file-pen text-[#569cd6]"></i> LKPD – Analisis Logika Pemrograman</h2>
+  <div><p class="text-sm mb-1"><b>1. Studi kasus:</b> Toko memberi diskon 15% bila belanja ≥ Rp200.000 dan gratis ongkir bila belanja ≥ Rp100.000. Tuliskan kode Python (atau alur logikanya) untuk menghitung total bayar.</p><textarea id="k1" class="code" style="min-height:120px"></textarea></div>
+  <div><p class="text-sm mb-1"><b>2. Telusuri (trace) kode:</b> <code class="mono text-[#ce9178]">x = 0 ; for i in range(1,5): x += i ; print(x)</code> — berapa output dan bagaimana nilai <code>x</code> berubah di tiap putaran?</p><textarea id="k2" class="inp" rows="3"></textarea></div>
+  <div><p class="text-sm mb-1"><b>3. Analisis:</b> Kapan memilih <code>for</code> dan kapan <code>while</code>? Beri satu contoh nyata untuk masing-masing.</p><textarea id="k3" class="inp" rows="3"></textarea></div>
+  <div><p class="text-sm mb-1"><b>4. Debugging:</b> Temukan 2 kesalahan pada <code class="mono text-[#ce9178]">if umur => 17 print("dewasa")</code> dan tulis versi benarnya.</p><textarea id="k4" class="inp" rows="3"></textarea></div>
+ </div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="s-ref" class="sec space-y-3">
+ <div class="card space-y-4">
+  <h2 class="font-bold text-white"><i class="fa-solid fa-seedling text-[#4ec9b0]"></i> Refleksi Diri</h2>
+  <div id="rate" class="space-y-3 text-sm"></div>
+  <div><p class="text-sm mb-1"><b>Meaningful:</b> Di mana kamu bisa memakai Python dalam kehidupan/cita-citamu?</p><textarea id="r1" class="inp" rows="2"></textarea></div>
+  <div><p class="text-sm mb-1"><b>Mindful:</b> Bagian mana yang paling sulit, dan strategi apa yang kamu pakai untuk mengatasinya?</p><textarea id="r2" class="inp" rows="2"></textarea></div>
+ </div>
+</section>
+
+<!-- FINISH -->
+<section id="s-finish" class="sec">
+ <div class="card text-center space-y-3">
+  <i class="fa-solid fa-flag-checkered text-4xl text-[#4ec9b0]"></i>
+  <h2 class="font-bold text-white text-xl">Selesai?</h2>
+  <p class="text-sm text-[#9d9d9d]">Menekan Finish akan mengunduh laporan PDF dan mengirimkannya ke email guru.</p>
+  <button id="finBtn" class="btn !bg-[#2ea043] hover:!bg-[#3fb950] text-lg" onclick="finish()"><i class="fa-solid fa-paper-plane"></i> Finish &amp; Kirim</button>
+ </div>
+</section>
+</main>
+
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4"><div id="mbox" class="card max-w-md w-full text-center space-y-3"></div></div>
+<div id="report" style="position:absolute;left:-10000px;top:0;width:700px;background:#fff;color:#111;padding:24px;font-family:Arial,sans-serif;font-size:12px"></div>
+
+<script>
+/* ====== KONFIGURASI GURU (isi sebelum dipakai) ====== */
+const CFG={
+ TEACHER_EMAIL:'guru@sekolah.sch.id',
+ EMAILJS_PUBLIC_KEY:'', EMAILJS_SERVICE_ID:'', EMAILJS_TEMPLATE_ID:'',
+ GAS_URL:'' // opsional: URL Web App Google Apps Script (menerima JSON + pdfBase64)
+};
+/* ===================================================== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const S={labRuns:0,labLast:'',labErr:0,score:0,done:[false,false,false,false,false],hint:[false,false,false,false,false],cur:0,codes:{}};
+const SECS=[['home','Beranda','fa-house'],['materi','Materi','fa-book'],['lab','Lab','fa-flask'],['game','Game','fa-gamepad'],['lkpd','LKPD','fa-file-pen'],['ref','Refleksi','fa-seedling'],['finish','Finish','fa-flag-checkered']];
+$('nav').innerHTML=SECS.map(s=>`<button class="nav ${s[0]=='finish'?'!text-[#4ec9b0] font-bold':''}" data-s="${s[0]}" onclick="go('${s[0]}')"><i class="fa-solid ${s[2]}"></i> ${s[1]}</button>`).join('');
+function go(id){document.querySelectorAll('.sec').forEach(e=>e.classList.toggle('on',e.id=='s-'+id));document.querySelectorAll('.nav').forEach(e=>e.classList.toggle('on',e.dataset.s==id));
+ const el=$('s-'+id);gsap.fromTo(el,{opacity:0,y:14},{opacity:1,y:0,duration:.4});window.scrollTo({top:0,behavior:'smooth'})}
+go('home');
+const t0=Date.now();setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);$('tm').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000);
+
+/* ====== MATERI ====== */
+const MAT=[
+['1. Variabel &amp; Tipe Data','Variabel adalah "kotak bernama" penyimpan data. Python menentukan tipe otomatis: <b>int</b> (bulat), <b>float</b> (desimal), <b>str</b> (teks), <b>bool</b> (True/False).','nama = "Ayu"\numur = 17\ntinggi = 1.62\nlulus = True\nprint(nama, umur, tinggi, lulus)\nprint(type(umur))'],
+['2. Operator','Aritmatika: + - * / // % **. Perbandingan: == != &lt; &gt; &lt;= &gt;=. Logika: and, or, not.','a = 17\nb = 5\nprint(a + b, a // b, a % b, a ** 2)\nprint(a > b and b > 10)'],
+['3. Percabangan if-elif-else','Program memilih jalur berdasarkan kondisi. <b>Indentasi</b> (4 spasi) menandai isi blok.','nilai = int(input("Nilai: "))\nif nilai >= 85:\n    print("A")\nelif nilai >= 70:\n    print("B")\nelse:\n    print("Perlu remedial")'],
+['4. Perulangan for &amp; while','<b>for</b> dipakai bila jumlah putaran diketahui; <b>while</b> bila berhenti saat kondisi tidak terpenuhi.','for i in range(1, 6):\n    print("Putaran", i)\n\nn = 3\nwhile n > 0:\n    print("Hitung mundur", n)\n    n -= 1'],
+['5. Fungsi Sederhana','Fungsi = blok kode bernama yang bisa dipakai ulang. <code>def</code> membuat fungsi, <code>return</code> mengembalikan hasil.','def luas_persegi(s):\n    return s * s\n\nprint(luas_persegi(6))']
+];
+$('materi').innerHTML=MAT.map((m,i)=>`<div class="card mb-3"><h3 class="font-bold text-white mb-1">${m[0]}</h3><p class="text-sm mb-2">${m[1]}</p><pre class="out !text-[#9cdcfe] !min-h-0">${esc(m[2])}</pre><button class="btn btn2 mt-2 text-sm" onclick="toLab(${i})"><i class="fa-solid fa-play"></i> Coba di Lab</button></div>`).join('');
+$('snip').innerHTML=MAT.map((m,i)=>`<button class="btn btn2 text-xs" onclick="toLab(${i},1)">${m[0].replace(/&amp;/g,'&').split('. ')[1]}</button>`).join('');
+function toLab(i,stay){$('labCode').value=MAT[i][2];if(!stay)go('lab')}
+
+/* ====== RUNNER (Skulpt) ====== */
+function runPy(code,ins){let out='';const q=ins?[...ins]:null;
+ Sk.configure({output:t=>out+=t,read:f=>{if(!Sk.builtinFiles||!Sk.builtinFiles.files[f])throw "File tidak ditemukan: "+f;return Sk.builtinFiles.files[f]},
+  inputfun:p=>q?(q.length?q.shift():''):(prompt(p||'Input:')||''),__future__:Sk.python3,execLimit:5000});
+ return Sk.misceval.asyncToPromise(()=>Sk.importMainWithBody('<stdin>',false,code,true)).then(()=>out)}
+async function runLab(){const o=$('labOut');o.textContent='';$('labSt').textContent='menjalankan...';S.labRuns++;
+ try{const r=await runPy($('labCode').value);o.textContent=r||'(tidak ada output)';S.labLast=r.slice(0,300);$('labSt').textContent='✔ sukses'}
+ catch(e){S.labErr++;o.textContent='⚠ '+e.toString();S.labLast='Error: '+e.toString().slice(0,200);$('labSt').textContent='✖ error'}}
+$('labCode').addEventListener('keydown',e=>{if(e.key=='Tab'){e.preventDefault();const t=e.target,p=t.selectionStart;t.setRangeText('    ',p,t.selectionEnd,'end')}if(e.ctrlKey&&e.key=='Enter')runLab()});
+
+/* ====== GAME 5 LEVEL ====== */
+const LV=[
+{n:'Sapaan Variabel',d:'Buat variabel <code>nama</code> dan <code>umur</code>, lalu cetak persis: <code>Halo, &lt;nama&gt;! Umur: &lt;umur&gt;</code>',
+ s:'# tulis kodemu\nnama = \numur = \nprint()',h:'Gunakan print("Halo,", nama + "!", "Umur:", umur)',t:[{i:[],ok:o=>/Halo,\s*\S+!\s*Umur:\s*\d+/.test(o)}]},
+{n:'Kalkulator Diskon',d:'Baca <code>harga</code> (input). Jika harga ≥ 100000 diskon 20%, selain itu 10%. Cetak total bayar.',
+ s:'harga = int(input())\n# lengkapi if-else\n',h:'total = harga * 0.8 di dalam if; else: harga * 0.9',t:[{i:['200000'],ok:o=>/\b160000(\.0)?\b/.test(o)},{i:['50000'],ok:o=>/\b45000(\.0)?\b/.test(o)}]},
+{n:'Perulangan Bintang',d:'Baca <code>n</code>, cetak segitiga bintang n baris (baris ke-i berisi i bintang).',
+ s:'n = int(input())\nfor i in range(1, n+1):\n    # cetak bintang\n',h:'print("*" * i)',t:[{i:['3'],ok:o=>o.trim().split('\n').map(x=>x.trim()).join('|')=='*|**|***'},{i:['5'],ok:o=>o.trim().split('\n').length==5}]},
+{n:'Tebak Angka',d:'Angka rahasia = 7. Gunakan <code>while</code>: cetak "Terlalu kecil" / "Terlalu besar", dan "Benar!" lalu berhenti.',
+ s:'rahasia = 7\nwhile True:\n    tebakan = int(input("Tebakan: "))\n    # lengkapi\n',h:'if tebakan < rahasia ... elif ... else: print("Benar!"); break',t:[{i:['3','9','7'],ok:o=>/kecil/i.test(o)&&/besar/i.test(o)&&/benar/i.test(o)}]},
+{n:'Fungsi Sederhana',d:'Buat fungsi <code>kuadrat(n)</code> yang <b>mengembalikan</b> n×n, lalu cetak hasilnya untuk input pengguna.',
+ s:'def kuadrat(n):\n    # lengkapi\n\nangka = int(input())\nprint(kuadrat(angka))',h:'return n * n',t:[{i:['6'],ok:(o,c)=>/\b36\b/.test(o)&&/def\s+kuadrat/.test(c)&&/return/.test(c)},{i:['4'],ok:o=>/\b16\b/.test(o)}]}
+];
+function drawBar(){$('lvBar').innerHTML=LV.map((l,i)=>{const lock=i>0&&!S.done[i-1];return `<button class="lv ${i==S.cur?'on':''} ${S.done[i]?'done':''} ${lock?'lock':''}" onclick="${lock?'':`pick(${i})`}">${S.done[i]?'<i class="fa-solid fa-check"></i>':lock?'<i class="fa-solid fa-lock"></i>':i+1} L${i+1}</button>`}).join('')}
+function pick(i){S.cur=i;drawBar();const l=LV[i];$('lvBody').innerHTML=`<h3 class="font-bold text-white mb-1">Level ${i+1}: ${l.n}</h3><p class="text-sm mb-2">${l.d}</p><textarea id="gc" class="code">${esc(S.codes[i]||l.s)}</textarea><div class="flex flex-wrap gap-2 my-2"><button class="btn" onclick="check()"><i class="fa-solid fa-circle-check"></i> Periksa</button><button class="btn btn2" onclick="hint()"><i class="fa-regular fa-lightbulb"></i> Petunjuk (-5)</button></div><pre id="gout" class="out">${S.done[i]?'✔ Level selesai!':''}</pre>`;
+ $('gc').addEventListener('keydown',e=>{if(e.key=='Tab'){e.preventDefault();const t=e.target;t.setRangeText('    ',t.selectionStart,t.selectionEnd,'end')}});gsap.from('#lvBody',{opacity:0,x:20,duration:.3})}
+function hint(){const i=S.cur;if(!S.hint[i]){S.hint[i]=true}$('gout').textContent='💡 '+LV[i].h}
+async function check(){const i=S.cur,l=LV[i],code=$('gc').value;S.codes[i]=code;const g=$('gout');g.textContent='memeriksa...';let ok=true,last='';
+ for(const t of l.t){try{last=await runPy(code,t.i);if(!t.ok(last,code)){ok=false;break}}catch(e){ok=false;last='⚠ '+e.toString();break}}
+ if(ok){if(!S.done[i]){S.done[i]=true;S.score=S.done.reduce((a,d,k)=>a+(d?(S.hint[k]?15:20):0),0);$('score').textContent=S.score;gsap.fromTo('#score',{scale:1.8},{scale:1,duration:.5})}
+  g.textContent='🎉 Benar! Level '+(i+1)+' selesai.\n'+last;drawBar()}
+ else g.textContent='✖ Belum tepat. Output kodemu:\n'+last+'\nCoba lagi atau gunakan petunjuk.'}
+drawBar();pick(0);
+
+/* ====== REFLEKSI ====== */
+const RT=[['Mindful','Saya memahami alur kode yang saya tulis.'],['Meaningful','Saya melihat manfaat Python untuk masa depan saya.'],['Joyful','Saya senang dan nyaman belajar hari ini.']];
+$('rate').innerHTML=RT.map((r,i)=>`<div><p><b>${r[0]}:</b> ${r[1]}</p><select id="rt${i}" class="inp !w-auto mt-1"><option value="">Pilih</option>${[1,2,3,4,5].map(n=>`<option>${n}</option>`).join('')}</select> <span class="text-xs text-[#9d9d9d]">(1 = kurang, 5 = sangat)</span></div>`).join('');
+
+/* ====== FINISH: PDF + EMAIL ====== */
+function popup(icon,color,title,body){$('mbox').innerHTML=`<i class="fa-solid ${icon} text-4xl" style="color:${color}"></i><h3 class="font-bold text-white text-lg">${title}</h3><div class="text-sm text-left space-y-1">${body}</div><button class="btn" onclick="$('modal').classList.replace('flex','hidden')">Tutup</button>`;$('modal').classList.replace('hidden','flex');gsap.fromTo('#mbox',{scale:.8,opacity:0},{scale:1,opacity:1,duration:.4,ease:'back.out(1.7)'})}
+async function finish(){
+ const nama=$('nama').value.trim(),kelas=$('kelas').value.trim();
+ if(!nama||!kelas){go('home');return popup('fa-circle-exclamation','#dcdcaa','Data belum lengkap','<p>Isi Nama dan Kelas di halaman Beranda terlebih dahulu.</p>')}
+ const v=id=>$(id).value.trim()||'(belum diisi)';const btn=$('finBtn');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+ const dur=Math.round((Date.now()-t0)/60000),now=new Date().toLocaleString('id-ID');
+ const labSt=S.labRuns?`${S.labRuns}x dijalankan (${S.labErr} error). Output terakhir: ${S.labLast||'-'}`:'Belum menjalankan kode di Lab';
+ const lvTxt=LV.map((l,i)=>`L${i+1} ${l.n}: ${S.done[i]?(S.hint[i]?'Selesai (+petunjuk)':'Selesai'):'Belum'}`).join('; ');
+ const rate=RT.map((r,i)=>`${r[0]}: ${$('rt'+i).value||'-'}/5`).join(', ');
+ const D={student_name:nama,kelas,waktu:now,durasi:dur+' menit',lab_status:labSt,skor_game:S.score+'/100',level_detail:lvTxt,
+  lkpd_1:v('k1'),lkpd_2:v('k2'),lkpd_3:v('k3'),lkpd_4:v('k4'),refleksi_rating:rate,refleksi_1:v('r1'),refleksi_2:v('r2'),to_email:CFG.TEACHER_EMAIL};
+ $('report').innerHTML=`<div style="background:#1e3a5f;color:#fff;padding:14px;border-radius:8px"><h1 style="margin:0;font-size:20px">Laporan Python Fundamental</h1><div>Informatika XII · 2 JP · ${esc(now)}</div></div>
+ <table style="width:100%;margin:10px 0"><tr><td><b>Nama:</b> ${esc(nama)}</td><td><b>Kelas:</b> ${esc(kelas)}</td><td><b>Durasi:</b> ${dur} menit</td></tr></table>
+ ${[['LAB Python',labSt],['Skor Game: '+D.skor_game,LV.map((l,i)=>`Level ${i+1} – ${l.n}: ${S.done[i]?'✔ Selesai':'✖ Belum'}`).join('<br>')],
+ ['LKPD',`<b>1.</b> <pre style="white-space:pre-wrap;margin:2px 0">${esc(D.lkpd_1)}</pre><b>2.</b> ${esc(D.lkpd_2)}<br><b>3.</b> ${esc(D.lkpd_3)}<br><b>4.</b> ${esc(D.lkpd_4)}`],
+ ['Refleksi',`${esc(rate)}<br><b>Manfaat:</b> ${esc(D.refleksi_1)}<br><b>Kesulitan &amp; strategi:</b> ${esc(D.refleksi_2)}`]].map(x=>`<div style="border-left:4px solid #569cd6;background:#f3f6fa;padding:8px 12px;margin:8px 0;page-break-inside:avoid"><b style="color:#1e3a5f">${x[0]}</b><div style="margin-top:3px">${x[1]}</div></div>`).join('')}`;
+ let pdfOK=false,mailOK=false,mailMsg='';
+ try{const fn=`Laporan_Python_${nama.replace(/\W+/g,'_')}_${kelas.replace(/\W+/g,'')}.pdf`;
+  const pdf=await html2pdf().set({margin:8,filename:fn,image:{type:'jpeg',quality:.95},html2canvas:{scale:2},jsPDF:{unit:'mm',format:'a4'}}).from($('report')).toPdf().get('pdf');
+  pdf.save(fn);pdfOK=true;D.pdfBase64=pdf.output('datauristring').split(',')[1];
+ }catch(e){console.error(e)}
+ try{
+  if(CFG.EMAILJS_PUBLIC_KEY&&CFG.EMAILJS_SERVICE_ID&&CFG.EMAILJS_TEMPLATE_ID){const {pdfBase64,...p}=D;emailjs.init({publicKey:CFG.EMAILJS_PUBLIC_KEY});await emailjs.send(CFG.EMAILJS_SERVICE_ID,CFG.EMAILJS_TEMPLATE_ID,p);mailOK=true}
+  else if(CFG.GAS_URL){await fetch(CFG.GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(D)});mailOK=true}
+  else mailMsg='Email belum dikonfigurasi oleh guru (isi CFG di kode).';
+ }catch(e){mailMsg='Pengiriman email gagal: '+(e.text||e.message||e)}
+ btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Finish &amp; Kirim';
+ const li=(ok,t)=>`<p>${ok?'✅':'⚠️'} ${t}</p>`;
+ popup(pdfOK&&mailOK?'fa-circle-check':'fa-triangle-exclamation',pdfOK&&mailOK?'#4ec9b0':'#dcdcaa',pdfOK&&mailOK?'Tugas Berhasil Dikirim!':'Selesai dengan catatan',
+  li(pdfOK,pdfOK?'PDF laporan berhasil diunduh ke perangkatmu.':'PDF gagal dibuat, coba lagi.')+li(mailOK,mailOK?'Laporan berhasil dikirim ke email guru.':mailMsg)+(mailOK?'':'<p class="text-[#9d9d9d]">Kirim file PDF yang terunduh langsung ke gurumu.</p>'));
+}
+</script>
+</body>
+</html>
